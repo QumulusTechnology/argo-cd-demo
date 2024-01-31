@@ -1,0 +1,64 @@
+# Cluster settings
+cluster:
+  name: management-cluster
+
+externalServices:
+  prometheus:
+    hostKey: "mimir_host"
+    queryEndpoint: /prometheus/api/v1/query
+    writeEndpoint: /api/v1/push
+    tenantIdKey: "mimir_tenant_id"
+    basicAuth:
+      usernameKey: "mimir_username"
+      passwordKey: "mimir_password"
+    secret:
+      create: false
+      name: grafana-agent-credentials
+      namespace: "grafana-agent"
+
+  loki:
+    hostKey: "loki_host"
+    writeEndpoint: /loki/api/v1/push
+    tenantIdKey: "loki_tenant_id"
+    basicAuth:
+      usernameKey: "loki_username"
+      passwordKey: "loki_password"
+    secret:
+      create: false
+      name: grafana-agent-credentials
+      namespace: "grafana-agent"
+logs:
+  enabled: true
+
+traces:
+  enabled: false
+
+grafana-agent:
+  crds:
+    create: false
+
+prometheus-operator-crds:
+  enabled: false
+
+opencost:
+  enabled: false
+
+metrics:
+  node-exporter:
+    enabled: true
+
+  apiserver:
+    enabled: true
+
+  kubelet:
+    enabled: true
+
+  kubeControllerManager:
+    enabled: true
+
+  kubeScheduler:
+    enabled: true
+
+  kubeProxy:
+    # -- Scrape metrics from the Kube Proxy
+    enabled: true

@@ -3,3 +3,4 @@
 # Declare variables to be passed into your templates.
 
 letsencrypt_email: "email@domain.com"
+domain: "domain.com"

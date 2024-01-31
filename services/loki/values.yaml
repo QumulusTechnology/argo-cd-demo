@@ -1,0 +1,87 @@
+ingress:
+  enabled: true
+  ingressClassName: "nginx"
+  annotations:
+    "cert-manager.io/cluster-issuer": "letsencrypt"
+    "ingress.kubernetes.io/ssl-redirect": "true"
+  paths:
+    write:
+      - /api/prom/push
+      - /loki/api/v1/push
+    read:
+      - /api/prom/tail
+      - /loki/api/v1/tail
+      - /loki/api
+      - /api/prom/rules
+      - /loki/api/v1/rules
+      - /prometheus/api/v1/rules
+      - /prometheus/api/v1/alerts
+    singleBinary:
+      - /api/prom/push
+      - /loki/api/v1/push
+      - /api/prom/tail
+      - /loki/api/v1/tail
+      - /loki/api
+      - /api/prom/rules
+      - /loki/api/v1/rules
+      - /prometheus/api/v1/rules
+      - /prometheus/api/v1/alerts
+  limits_config:
+    ingestion_rate_mb: 64
+gateway:
+  enabled: true
+  replicas: 1
+  verboseLogging: true
+  basicAuth:
+    enabled: true
+    existingSecret: "loki-secret"
+  autoscaling:
+    enabled: true
+  deploymentStrategy:
+    type: RollingUpdate
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    annotations:
+      "cert-manager.io/cluster-issuer": "letsencrypt"
+      "ingress.kubernetes.io/ssl-redirect": "true"
+
+backend:
+  persistence:
+    enableStatefulSetAutoDeletePVC: false
+
+monitoring:
+  selfMonitoring:
+    enabled: true
+    grafanaAgent:
+      installOperator: false
+test:
+  enabled: false
+
+
+loki:
+
+  memcached:
+    chunk_cache:
+      enabled: true
+      host: "chunk-cache-memcached.loki.svc"
+      service: "memcached-client"
+      batch_size: 256
+      parallelism: 10
+    results_cache:
+      enabled: true
+      host: "result-cache-memcached.loki.svc"
+      service: "memcached-client"
+      timeout: "500ms"
+      default_validity: "12h"
+
+  limits_config:
+    enforce_metric_name: false
+    max_cache_freshness_per_query: 10m
+    reject_old_samples: true
+    reject_old_samples_max_age: 168h
+    split_queries_by_interval: 15m
+    ingestion_rate_mb: 128
+    ingestion_burst_size_mb: 256
+    per_stream_rate_limit: 20MB
+    per_stream_rate_limit_burst: 100MB
