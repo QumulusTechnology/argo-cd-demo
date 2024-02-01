@@ -21,7 +21,7 @@ spec:
     name: Loki
     type: loki
     access: proxy
-    url: https://loki.{{ .Values.domain }}
+    url: https://gateway-loki.{{ .Values.domain }}
     basicAuthUser: ${loki_username}
     basicAuth: true
     isDefault: false

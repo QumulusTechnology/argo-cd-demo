@@ -33,3 +33,8 @@ spec:
       allowEmpty: true
     syncOptions:
       - CreateNamespace=true
+  ignoreDifferences:
+    - group: "grafana.integreatly.org"
+      kind: "GrafanaDashboard"
+      jsonPointers:
+        - /spec/instanceSelector

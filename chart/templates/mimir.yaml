@@ -28,15 +28,19 @@ spec:
               - secretName: mimir-tls
                 hosts:
                 - mimir.{{ .Values.domain }}
+
           metaMonitoring:
             grafanaAgent:
               logs:
                 remote:
                   url: "https://loki.{{ .Values.domain }}/loki/api/v1/push"
+                  headers:
+                    X-Scope-OrgID: management
               metrics:
                 remote:
                   url: "https:/mimir.{{ .Values.domain }}/api/v1/push"
-
+                  headers:
+                    X-Scope-OrgID: management
 
     - repoURL: https://charts.bitnami.com/bitnami
       chart: memcached
@@ -80,4 +84,3 @@ spec:
       allowEmpty: true
     syncOptions:
       - CreateNamespace=true
-

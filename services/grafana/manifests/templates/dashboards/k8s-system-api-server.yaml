@@ -4,6 +4,6 @@ metadata:
   name: k8s-system-api-server
 spec:
   instanceSelector:
-    matchLabels:
-      cluster_type: "management"
+    labels:
+      cluster_type: management
   url: "https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json"

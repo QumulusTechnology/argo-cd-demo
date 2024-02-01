@@ -43,22 +43,67 @@ prometheus-operator-crds:
 opencost:
   enabled: false
 
+
 metrics:
+
+  kube-state-metrics:
+    enabled: true
+    allowList: null
   node-exporter:
     enabled: true
-
+    allowList: null
   apiserver:
     enabled: true
-
+    allowList: null
+    extraMetricRelabelingRules: |-
+      rule {
+        action = "replace"
+        source_labels = ["instance"]
+        target_label = "node"
+      }
   kubelet:
     enabled: true
+    allowList: null
+    extraMetricRelabelingRules: |-
+      rule {
+        action = "replace"
+        source_labels = ["instance"]
+        target_label = "node"
+      }
 
   kubeControllerManager:
     enabled: true
-
+    allowList: null
+    extraMetricRelabelingRules: |-
+      rule {
+        action = "replace"
+        source_labels = ["instance"]
+        target_label = "node"
+      }
   kubeScheduler:
     enabled: true
-
+    allowList: null
+    extraMetricRelabelingRules: |-
+      rule {
+        action = "replace"
+        source_labels = ["instance"]
+        target_label = "node"
+      }
   kubeProxy:
-    # -- Scrape metrics from the Kube Proxy
     enabled: true
+    allowList: null
+    extraMetricRelabelingRules: |-
+      rule {
+        action = "replace"
+        source_labels = ["instance"]
+        target_label = "node"
+      }
+  cadvisor:
+    enabled: true
+    allowList: null
+    extraMetricRelabelingRules: |-
+      rule {
+        action = "replace"
+        source_labels = ["instance"]
+        target_label = "node"
+      }

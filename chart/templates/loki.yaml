@@ -11,19 +11,12 @@ spec:
       ref: vals
 
     - repoURL: https://grafana.github.io/helm-charts
-      targetRevision: 5.42.1
-      chart: loki
+      targetRevision: 0.78.2
+      chart: loki-distributed
       helm:
         valueFiles:
           - $vals/services/loki/values.yaml
         valuesObject:
-          ingress:
-            hosts:
-              - loki.{{ .Values.domain }}
-            tls:
-              - secretName: loki-tls
-                hosts:
-                  - loki.{{ .Values.domain }}
           gateway:
             ingress:
               hosts:
@@ -35,23 +28,6 @@ spec:
                 - secretName: loki-gateway-tls
                   hosts:
                     - gateway-loki.{{ .Values.domain }}
-
-    - repoURL: https://charts.bitnami.com/bitnami
-      chart: memcached
-      targetRevision: 6.7.0
-      helm:
-        releaseName: chunk-cache
-        valueFiles:
-          - $vals/services/loki/memcached-chunk-values.yaml
-
-    - repoURL: https://charts.bitnami.com/bitnami
-      chart: memcached
-      targetRevision: 6.7.0
-      helm:
-        releaseName: results-cache
-        valueFiles:
-          - $vals/services/loki/memcached-results-values.yaml
-
   destination:
     server: https://kubernetes.default.svc
     namespace: loki

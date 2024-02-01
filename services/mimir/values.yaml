@@ -1,10 +1,21 @@
 metaMonitoring:
+  enabled: true
+  dashboards:
+    enabled: true
   serviceMonitor:
     enabled: true
+    clusterLabel: "management-cluster"
+  prometheusRule:
+    enabled: true
+    mimirAlerts: true
+    mimirRules: true
+    labels:
+      cluster: "management-cluster"
   grafanaAgent:
     enabled: true
     installOperator: false
     logs:
+      enabled: true
       remote:
         auth:
           username: admin
@@ -12,7 +23,6 @@ metaMonitoring:
           passwordSecretKey: loki_password
         headers:
           X-Scope-OrgID: management
-
     metrics:
       remote:
         auth:
@@ -21,9 +31,7 @@ metaMonitoring:
           passwordSecretKey: mimir_password
         headers:
           X-Scope-OrgID: management
-
-  enabled: true
-
+    
 # useExternalConfig: true
 # configStorageType: Secret
 # externalConfigSecretName: mimir-custom-config
