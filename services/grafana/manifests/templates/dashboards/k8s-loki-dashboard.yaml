@@ -41,6 +41,7 @@ spec:
         {
           "datasource": {
             "type": "loki",
+            "uid": "${datasource}"
           },
           "gridPos": {
             "h": 23,
@@ -63,8 +64,10 @@ spec:
             {
               "datasource": {
                 "type": "loki",
+                "uid": "${datasource}"
               },
-              "expr": "{namespace=\"$namespace\", pod=~\"$pod\", container=~\"$container\"}",
+              "editorMode": "code",
+              "expr": "{namespace=\"$namespace\", pod=~\"$pod\", container=~\"$container\"} |~ \"$search\"",
               "queryType": "range",
               "refId": "A"
             }
@@ -86,6 +89,25 @@ spec:
           {
             "current": {
               "selected": true,
+              "text": "Loki",
+              "value": "adf1a5aa-daaa-42fa-a0c7-5351783ca346"
+            },
+            "hide": 2,
+            "includeAll": false,
+            "label": "Datasource",
+            "multi": false,
+            "name": "datasource",
+            "options": [],
+            "query": "loki",
+            "queryValue": "",
+            "refresh": 1,
+            "regex": "",
+            "skipUrlSync": false,
+            "type": "datasource"
+          },
+          {
+            "current": {
+              "selected": false,
               "text": "loki",
               "value": "loki"
             },
@@ -195,6 +217,6 @@ spec:
       "timezone": "",
       "title": "Kubernetes / Loki",
       "uid": "IKc_qZOIz123123",
-      "version": 2,
+      "version": 5,
       "weekStart": ""
     }
