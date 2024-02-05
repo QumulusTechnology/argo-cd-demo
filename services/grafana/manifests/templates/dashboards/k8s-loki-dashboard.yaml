@@ -29,14 +29,14 @@ spec:
       "fiscalYearStartMonth": 0,
       "gnetId": 13186,
       "graphTooltip": 0,
-      "id": 5,
+      "id": 10,
       "links": [],
       "liveNow": false,
       "panels": [
         {
           "datasource": {
             "type": "loki",
-            "uid": "7c39cc4b-ffa1-4fd1-84e3-c4769046973e"
+            "uid": "7b3a35fb-1f82-4c5b-b5dd-36a87bb70ace"
           },
           "gridPos": {
             "h": 25,
@@ -60,10 +60,9 @@ spec:
             {
               "datasource": {
                 "type": "loki",
-                "uid": "7c39cc4b-ffa1-4fd1-84e3-c4769046973e"
+                "uid": "7b3a35fb-1f82-4c5b-b5dd-36a87bb70ace"
               },
-              "editorMode": "code",
-              "expr": "{namespace=~\"$namespace\", pod=~\"$pod\", container=~\"$container\"} |~ \"$search\"",
+              "expr": "{namespace=~\"$namespace\", pod=~\"$pod\", container=~\"$container\"}",
               "queryType": "range",
               "refId": "A"
             }
@@ -89,7 +88,7 @@ spec:
             },
             "datasource": {
               "type": "loki",
-              "uid": "e89d3649-3ad1-4e44-9204-b24961c2fa3c"
+              "uid": "7b3a35fb-1f82-4c5b-b5dd-36a87bb70ace"
             },
             "definition": "",
             "hide": 0,
@@ -115,13 +114,13 @@ spec:
           {
             "allValue": ".*",
             "current": {
-              "selected": true,
+              "selected": false,
               "text": "grafana-agent-grafana-agent-logs-lnspn",
               "value": "grafana-agent-grafana-agent-logs-lnspn"
             },
             "datasource": {
               "type": "loki",
-              "uid": "e89d3649-3ad1-4e44-9204-b24961c2fa3c"
+              "uid": "7b3a35fb-1f82-4c5b-b5dd-36a87bb70ace"
             },
             "definition": "",
             "hide": 0,
@@ -153,7 +152,7 @@ spec:
             },
             "datasource": {
               "type": "loki",
-              "uid": "e89d3649-3ad1-4e44-9204-b24961c2fa3c"
+              "uid": "7b3a35fb-1f82-4c5b-b5dd-36a87bb70ace"
             },
             "definition": "",
             "hide": 0,
@@ -216,7 +215,7 @@ spec:
       },
       "timezone": "",
       "title": "Kubernetes / Loki Dashboard",
-      "uid": "liz0yRCZz",
-      "version": 1,
+      "uid": "liz0yRCZz123",
+      "version": 2,
       "weekStart": ""
     }
