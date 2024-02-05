@@ -34,14 +34,13 @@ spec:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 10,
+      "id": 5,
       "links": [],
       "liveNow": false,
       "panels": [
         {
           "datasource": {
             "type": "loki",
-            "uid": "edc9948a-c381-4547-a5ef-38738997a652"
           },
           "gridPos": {
             "h": 23,
@@ -64,10 +63,8 @@ spec:
             {
               "datasource": {
                 "type": "loki",
-                "uid": "edc9948a-c381-4547-a5ef-38738997a652"
               },
-              "editorMode": "code",
-              "expr": "{namespace=\"$namespace\", pod=~\"$pod\", container=~\"$container\"} |~ \"$search\"",
+              "expr": "{namespace=\"$namespace\", pod=~\"$pod\", container=~\"$container\"}",
               "queryType": "range",
               "refId": "A"
             }
@@ -117,7 +114,7 @@ spec:
           },
           {
             "current": {
-              "selected": true,
+              "selected": false,
               "text": "loki-loki-distributed-querier-0",
               "value": "loki-loki-distributed-querier-0"
             },
