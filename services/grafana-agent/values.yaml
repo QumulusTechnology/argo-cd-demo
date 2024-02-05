@@ -15,7 +15,6 @@ externalServices:
       create: false
       name: grafana-agent-credentials
       namespace: "grafana-agent"
-
   loki:
     hostKey: "loki_host"
     writeEndpoint: /loki/api/v1/push
@@ -29,101 +28,38 @@ externalServices:
       namespace: "grafana-agent"
 logs:
   enabled: true
-
 traces:
   enabled: false
-
 grafana-agent:
   crds:
     create: false
-
 prometheus-operator-crds:
   enabled: false
-
 opencost:
   enabled: false
-
-
 metrics:
-
   kube-state-metrics:
     enabled: true
-    allowList:
-    - kube_daemonset.*
-    - kube_deployment_metadata_generation
-    - kube_deployment_spec_replicas
-    - kube_deployment_status_observed_generation
-    - kube_deployment_status_replicas_available
-    - kube_deployment_status_replicas_updated
-    - kube_horizontalpodautoscaler_spec_max_replicas
-    - kube_horizontalpodautoscaler_spec_min_replicas
-    - kube_horizontalpodautoscaler_status_current_replicas
-    - kube_horizontalpodautoscaler_status_desired_replicas
-    - kube_job.*
-    - kube_namespace_status_phase
-    - kube_namespace_status_phase
-    - kube_node.*
-    - kube_persistentvolumeclaim_resource_requests_storage_bytes
-    - kube_pod_container_info
-    - kube_pod_container_resource_limits
-    - kube_pod_container_resource_requests
-    - kube_pod_container_status_restarts_total
-    - kube_pod_container_status_waiting_reason
-    - kube_pod_container_status_waiting_reason
-    - kube_pod_info
-    - kube_pod_owner
-    - kube_pod_start_time
-    - kube_pod_status_phase
-    - kube_pod_status_phase
-    - kube_pod_status_reason
-    - kube_replicaset.*
-    - kube_resourcequota
-    - kube_statefulset.*
+    allowList: null
   node-exporter:
     enabled: true
-    node-exporter:
-    allowList:
-      - node_cpu_core_throttles_total
-      - node_filesystem.*
-      - node_memory.*
+    allowList: null
   apiserver:
     enabled: true
     allowList: null
-    extraMetricRelabelingRules: |-
-      rule {
-        action = "replace"
-        source_labels = ["instance"]
-        target_label = "node"
-      }
   kubelet:
     enabled: true
     allowList: null
-    extraMetricRelabelingRules: |-
-      rule {
-        action = "replace"
-        source_labels = ["instance"]
-        target_label = "node"
-      }
-
   kubeControllerManager:
     enabled: true
     allowList: null
-    extraMetricRelabelingRules: |-
-      rule {
-        action = "replace"
-        source_labels = ["instance"]
-        target_label = "node"
-      }
   kubeScheduler:
     enabled: true
     allowList: null
-    extraMetricRelabelingRules: |-
-      rule {
-        action = "replace"
-        source_labels = ["instance"]
-        target_label = "node"
-      }
   kubeProxy:
+    enabled: true
+    allowList: null
+  cadvisor:
     enabled: true
     allowList: null
     extraMetricRelabelingRules: |-
@@ -132,35 +68,18 @@ metrics:
         source_labels = ["instance"]
         target_label = "node"
       }
-  cadvisor:
-    enabled: true
-    allowList:
-    - container_cpu_cfs_periods_total
-    - container_cpu_cfs_throttled_periods_total
-    - container_cpu_usage_seconds_total
-    - container_fs_reads_bytes_total
-    - container_fs_reads_total
-    - container_fs_writes_bytes_total
-    - container_fs_writes_total
-    - container_memory_cache
-    - container_memory_rss
-    - container_memory_swap
-    - container_memory_working_set_bytes
-    - container_network_receive_bytes_total
-    - container_network_receive_packets_dropped_total
-    - container_network_receive_packets_total
-    - container_network_receive_errors_total
-    - container_network_transmit_bytes_total
-    - container_network_transmit_packets_dropped_total
-    - container_network_transmit_packets_total
-    - container_cpu_cfs_throttled_seconds_total
-    - machine_memory_bytes
-    - machine_cpu_cores
-    - container_oom_events_total
 
-    extraMetricRelabelingRules: |-
-      rule {
-        action = "replace"
-        source_labels = ["instance"]
-        target_label = "node"
+extraConfig: |-
+    mimir.rules.kubernetes "main" {
+      tenant_id = nonsensitive(remote.kubernetes.secret.metrics_service.data["mimir_tenant_id"])
+      address = nonsensitive(remote.kubernetes.secret.metrics_service.data["mimir_host"])
+      basic_auth {
+        username = nonsensitive(remote.kubernetes.secret.metrics_service.data["mimir_username"])
+        password = remote.kubernetes.secret.metrics_service.data["mimir_password"]
       }
+      rule_selector {
+        match_labels = {
+            tenant = nonsensitive(remote.kubernetes.secret.metrics_service.data["mimir_tenant_id"]),
+        }
+      }
+    }

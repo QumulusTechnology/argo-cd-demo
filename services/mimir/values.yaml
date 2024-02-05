@@ -22,7 +22,7 @@ metaMonitoring:
           passwordSecretName: mimir-credentials
           passwordSecretKey: loki_password
         headers:
-          X-Scope-OrgID: management
+          X-Scope-OrgID: master
     metrics:
       remote:
         auth:
@@ -30,7 +30,7 @@ metaMonitoring:
           passwordSecretName: mimir-credentials
           passwordSecretKey: mimir_password
         headers:
-          X-Scope-OrgID: management
+          X-Scope-OrgID: master
     
 # useExternalConfig: true
 # configStorageType: Secret

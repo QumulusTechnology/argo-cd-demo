@@ -4,6 +4,11 @@ metadata:
   name: mimir-alertmanager
 spec:
   valuesFrom:
+  - targetPath: "url"
+    valueFrom:
+      secretKeyRef:
+        name: "grafana-datasource-credentials"
+        key: "mimir_host"
   - targetPath: "basicAuthUser"
     valueFrom:
       secretKeyRef:
@@ -16,12 +21,12 @@ spec:
         key: "mimir_password"
   instanceSelector:
     matchLabels:
-      cluster_type: "management"
+      cluster_type: management
   datasource:
     name: Alertmanager
     type: alertmanager
     access: proxy
-    url: https://mimir.{{ .Values.domain }}
+    url: ${mimir_host}
     basicAuth: true
     basicAuthUser: ${mimir_username}
     isDefault: true
@@ -29,6 +34,7 @@ spec:
       httpHeaderName1: X-Scope-OrgID
       tlsSkipVerify: true
       implementation: mimir
+      handleGrafanaManagedAlerts: true
     secureJsonData:
       basicAuthPassword : ${mimir_password}
       httpHeaderValue1: {{ .Values.tenant }}

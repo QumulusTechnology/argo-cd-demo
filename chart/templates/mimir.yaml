@@ -35,12 +35,12 @@ spec:
                 remote:
                   url: "https://loki.{{ .Values.domain }}/loki/api/v1/push"
                   headers:
-                    X-Scope-OrgID: management
+                    X-Scope-OrgID: master
               metrics:
                 remote:
                   url: "https:/mimir.{{ .Values.domain }}/api/v1/push"
                   headers:
-                    X-Scope-OrgID: management
+                    X-Scope-OrgID: master
 
     - repoURL: https://charts.bitnami.com/bitnami
       chart: memcached

@@ -5,7 +5,6 @@ metadata:
   name: grafana
   labels:
     cluster_type: management
-
 spec:
   config:
     log:

@@ -21,7 +21,8 @@ spec:
       helm:
         valuesObject:
           domain: {{ .Values.domain }}
-          tenant: management
+          tenant: {{ .Values.tenant }}
+
 
   destination:
     server: https://kubernetes.default.svc

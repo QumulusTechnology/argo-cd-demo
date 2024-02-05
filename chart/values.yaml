@@ -4,3 +4,4 @@
 
 letsencrypt_email: "email@domain.com"
 domain: "domain.com"
+tenant: "master"
