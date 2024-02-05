@@ -3286,9 +3286,9 @@ spec:
               },
               "editorMode": "code",
               "exemplar": true,
-              "expr": "rate(node_disk_read_bytes_total{instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval])",
+              "expr": "rate(node_disk_read_bytes_total{instance=\"$instance\", cluster=\"$cluster\"}[5m])",
               "interval": "$resolution",
-              "legendFormat": "{{device}}",
+              "legendFormat": "{{`{{`}} device {{`}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -3389,7 +3389,7 @@ spec:
               "expr": "rate(node_disk_written_bytes_total{instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval])",
               "hide": false,
               "interval": "$resolution",
-              "legendFormat": "{{device}}",
+              "legendFormat": "{{`{{`}} device {{`}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -3487,7 +3487,7 @@ spec:
               "exemplar": true,
               "expr": "rate(node_disk_reads_completed_total{instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval])",
               "interval": "$resolution",
-              "legendFormat": "{{device}}",
+              "legendFormat": "{{`{{`}} device {{`}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -3586,7 +3586,7 @@ spec:
               "expr": "rate(node_disk_writes_completed_total{instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval])",
               "hide": false,
               "interval": "$resolution",
-              "legendFormat": "{{device}}",
+              "legendFormat": "{{`{{`}} device {{`}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -3684,7 +3684,7 @@ spec:
               "exemplar": true,
               "expr": "rate(node_disk_io_now{instance=\"$instance\", cluster=\"$cluster\"}[$__rate_interval]) ",
               "interval": "$resolution",
-              "legendFormat": "{{device}}",
+              "legendFormat": "{{`{{`}} device {{`}}`}}",
               "range": true,
               "refId": "A"
             }
