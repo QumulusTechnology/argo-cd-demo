@@ -34,7 +34,7 @@ spec:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 1,
-      "id": 9,
+      "id": 5,
       "links": [],
       "liveNow": false,
       "panels": [
@@ -566,7 +566,7 @@ spec:
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "1eff8a96-9cbe-4f4a-9233-4f79a4dcc487"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -614,10 +614,10 @@ spec:
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "1eff8a96-9cbe-4f4a-9233-4f79a4dcc487"
+                "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "count(kube_namespace_created{cluster=\"management-cluster\"})",
+              "expr": "count(kube_namespace_created{cluster=\"$cluster\"})",
               "interval": "",
               "legendFormat": "__auto",
               "range": true,
@@ -2915,7 +2915,7 @@ spec:
             "current": {
               "selected": false,
               "text": "Mimir",
-              "value": "1eff8a96-9cbe-4f4a-9233-4f79a4dcc487"
+              "value": "14476a9d-646b-4660-a5b9-8cd353d22e18"
             },
             "hide": 0,
             "includeAll": false,
@@ -3013,6 +3013,6 @@ spec:
       "timezone": "",
       "title": "Kubernetes / Views / Global",
       "uid": "k8s_views_global",
-      "version": 1,
+      "version": 2,
       "weekStart": ""
     }

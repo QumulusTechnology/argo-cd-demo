@@ -83,7 +83,7 @@ metrics:
     enabled: true
     node-exporter:
     allowList:
-      - node_cpu.*
+      - node_cpu_core_throttles_total
       - node_filesystem.*
       - node_memory.*
   apiserver:
