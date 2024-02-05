@@ -81,7 +81,11 @@ metrics:
     - kube_statefulset.*
   node-exporter:
     enabled: true
-    allowList: null
+    node-exporter:
+    allowList:
+      - node_cpu.*
+      - node_filesystem.*
+      - node_memory.*
   apiserver:
     enabled: true
     allowList: null
