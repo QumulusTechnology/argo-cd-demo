@@ -148,7 +148,9 @@ metrics:
     - container_network_transmit_bytes_total
     - container_network_transmit_packets_dropped_total
     - container_network_transmit_packets_total
+    - container_cpu_cfs_throttled_seconds_total
     - machine_memory_bytes
+    - machine_cpu_cores
     - container_oom_events_total
 
     extraMetricRelabelingRules: |-
