@@ -285,7 +285,7 @@ spec:
         ]
       },
       "timezone": "",
-      "title": "Loki Dashboard",
+      "title": "Kubernetes / Loki Dashboard",
       "uid": "liz0yRCZz123",
       "version": 1,
       "weekStart": ""
