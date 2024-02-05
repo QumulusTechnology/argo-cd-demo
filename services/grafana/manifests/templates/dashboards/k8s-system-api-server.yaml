@@ -469,7 +469,7 @@ spec:
               "exemplar": true,
               "expr": "sum by (verb) (rate(apiserver_request_total{cluster=~\"$cluster\"}[$__rate_interval]))",
               "interval": "$resolution",
-              "legendFormat": "{{ verb}}",
+              "legendFormat": "{{`{{`}} verb {{`}}`}}",
               "refId": "A"
             }
           ],
