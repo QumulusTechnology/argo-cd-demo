@@ -666,7 +666,7 @@ spec:
               "exemplar": true,
               "expr": "sum(rate(apiserver_request_duration_seconds_sum{job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}[2m])) by (verb)\n/\nsum(rate(apiserver_request_duration_seconds_count{job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}[2m])) by (verb)",
               "interval": "$resolution",
-              "legendFormat": "{{ verb }}",
+              "legendFormat": "{{`{{`}} verb {{`}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -864,7 +864,7 @@ spec:
               "exemplar": true,
               "expr": "sum by(verb) (rate(apiserver_request_total{code=~\"5..\",job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}[2m]))\n / sum by(verb) (rate(apiserver_request_total{job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}[2m]))",
               "interval": "$resolution",
-              "legendFormat": "{{ verb }}",
+              "legendFormat": "{{`{{`}} verb {{`}}`}}",
               "range": true,
               "refId": "A"
             }
