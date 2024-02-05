@@ -372,7 +372,7 @@ spec:
               "exemplar": true,
               "expr": "sum by (code) (rate(apiserver_request_total{cluster=~\"$cluster\"}[$__rate_interval]))",
               "interval": "$resolution",
-              "legendFormat": "{{ code }}",
+              "legendFormat": "{{`{{`}} code {{`}}`}}",
               "refId": "A"
             }
           ],
