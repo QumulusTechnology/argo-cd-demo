@@ -162,7 +162,10 @@ spec:
       ],
       "refresh": "",
       "schemaVersion": 39,
-      "tags": [],
+      "tags": [
+        "Kubernetes",
+        "Loki"
+      ],
       "templating": {
         "list": [
           {
@@ -287,6 +290,6 @@ spec:
       "timezone": "",
       "title": "Kubernetes / Loki Dashboard",
       "uid": "liz0yRCZz123",
-      "version": 1,
+      "version": 3,
       "weekStart": ""
     }
