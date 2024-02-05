@@ -1089,7 +1089,7 @@ spec:
               "expr": "sum(rate(kubelet_cgroup_manager_duration_seconds_count{cluster=\"$cluster\", job=\"integrations/kubernetes/kubelet\", instance=~\"$instance\"}[5m])) by (instance, operation_type)",
               "format": "time_series",
               "intervalFactor": 2,
-              "legendFormat": "{{operation_type}}",
+              "legendFormat": "{{`{{`}} operation_type {{`}}`}}",
               "range": true,
               "refId": "A"
             }
