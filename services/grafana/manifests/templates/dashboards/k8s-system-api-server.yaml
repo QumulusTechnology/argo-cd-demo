@@ -109,7 +109,7 @@ spec:
               "exemplar": true,
               "expr": "up{job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}",
               "interval": "",
-              "legendFormat": "{{ instance }}",
+              "legendFormat": "{{`{{`}} instance {{`}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -567,7 +567,7 @@ spec:
               "exemplar": true,
               "expr": "sum(rate(apiserver_request_duration_seconds_sum{job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}[2m])) by (instance)\n/\nsum(rate(apiserver_request_duration_seconds_count{job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}[2m])) by (instance)",
               "interval": "$resolution",
-              "legendFormat": "{{ instance }}",
+              "legendFormat": "{{`{{`}} instance {{`}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -765,7 +765,7 @@ spec:
               "exemplar": true,
               "expr": "sum by(instance) (rate(apiserver_request_total{code=~\"5..\", job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}[2m]))\n / sum by(instance) (rate(apiserver_request_total{job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}[2m]))",
               "interval": "$resolution",
-              "legendFormat": "{{ instance }}",
+              "legendFormat": "{{`{{`}} instance {{`}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -962,7 +962,7 @@ spec:
               "exemplar": true,
               "expr": "sum(rate(apiserver_request_total{cluster=~\"$cluster\"}[$__rate_interval])) by (instance)",
               "interval": "$resolution",
-              "legendFormat": "{{ instance }}",
+              "legendFormat": "{{`{{`}} instance {{`}}`}}",
               "refId": "A"
             }
           ],
@@ -1060,7 +1060,7 @@ spec:
               "exemplar": true,
               "expr": "sum(rate(workqueue_depth{job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}[2m])) by (instance)",
               "interval": "$resolution",
-              "legendFormat": "{{ instance }}",
+              "legendFormat": "{{`{{`}} instance {{`}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -1160,7 +1160,7 @@ spec:
               "exemplar": true,
               "expr": "rate(process_cpu_seconds_total{job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}[2m])",
               "interval": "$resolution",
-              "legendFormat": "{{ instance }}",
+              "legendFormat": "{{`{{`}} instance {{`}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -1259,7 +1259,7 @@ spec:
               "exemplar": true,
               "expr": "process_resident_memory_bytes{job=\"integrations/kubernetes/apiserver\", cluster=~\"$cluster\"}",
               "interval": "$resolution",
-              "legendFormat": "{{ instance }}",
+              "legendFormat": "{{`{{`}} instance {{`}}`}}",
               "range": true,
               "refId": "A"
             }
